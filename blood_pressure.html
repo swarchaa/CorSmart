@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>CorSmart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/index.css" media="screen"/>
+  <script src="js/bp2.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="home.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+    <a href="blood_pressure.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Blood Pressure</a>
+    <a href="heart_rate.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Heart Rate</a>
+    <a href="framingham.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Framingham's Risk Score</a>
+    <a href="heart_healthy.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Heart Healthy Foods</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="home.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <a href="blood_pressure.html" class="w3-bar-item w3-button w3-padding-large">Blood Pressure</a>
+    <a href="heart_rate.html" class="w3-bar-item w3-button w3-padding-large">Heart Rate</a>
+    <a href="framingham.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Framingham's Risk Score</a>
+    <a href="heart_healthy.html" class="w3-bar-item w3-button w3-padding-large">Heart Healthy Foods</a>
+  </div>
+</div>
+
+<html>
+<head>
+    <title>Blood Pressure Calculator</title>
+    <link rel="stylesheet" type="text/css" href="css/framingham.css" media="screen"/>
+</head>
+<body>
+    <div class= "column">
+    <script src="js/bp2.js" type="text/JavaScript"></script>
+	<div class="container1">
+        <form method="post" action="" id="bloodpressure" runat="server">
+
+        	<div>
+            <div style="text-align: left;">
+                <h2 class="pt-2 pb-3 font-weight-bold">Blood Pressure Calculator</h2>
+            </div>
+            <div>
+                <h3>Please Enter Your Blood Pressure Readings</h3>
+                 <div class="row">   
+                    <div>
+                        <div class="row mx-auto">
+                            <div class="col-md-6 form-group row">
+                                <p class="label col-sm-3 pl-0 pl-md-3">Date (MM/DD/YYYY)<span class="offred">*</span>:</p>
+                                <p class="col-sm-9 pl-0 pl-md-3"><input type="date" id="cDate" value="#" min="2019-01-01" max="2022-12-31" class="bdr" size="5" name="cDate" Enabled="true" style="padding:5px" onblur="dateValidation()">
+                                    <label for="error" id= "date_error"></label>
+                                </p>
+                            </div>
+                            <div class="col-md-6 form-group row">    
+                                <p class="label col-sm-3 pl-0 pl-md-3">Systolic (AM/Daytime)<span class="offred">*</span>:</p>
+                                <p class="col-sm-9 pl-0 pl-md-3"><input type="text" id="cSystolic" class="bdr" size="5" name="cSystolic" Enabled="true" style="padding:5px" onblur="systolicValidation()"placeholder="Please Enter Your Daytime Reading">
+                                    <label for="error" id= "systolic_error"></label>
+                                </p>
+                            </div>
+
+                             <div class="col-md-6 form-group row">    
+                                <p class="label col-sm-3 pl-0 pl-md-3">Diastolic (AM/Daytime)<span class="offred">*</span>:</p>
+                                <p class="col-sm-9 pl-0 pl-md-3"><input type="text" id="cDiastolic" class="bdr" size="5" name="cDiastolic" Enabled="true" style="padding:5px" onblur="diastolicValidation()"placeholder="Please Enter Your Daytime Reading">
+                                    <label for="error" id= "diastolic_error"></label>
+                                </p>
+                            </div>
+                            <div class="col-md-6 form-group row">    
+                                <p class="label col-sm-3 pl-0 pl-md-3">Systolic (PM/Nighttime)<span class="offred">*</span>:</p>
+                                <p class="col-sm-9 pl-0 pl-md-3"><input type="text" id="cSystolic1" class="bdr" size="5" name="cSystolic1" Enabled="true" style="padding:5px" onblur="systolicValidation()"placeholder="Please Enter Your Nighttime Reading">
+                                    <label for="error" id= "systolic_error1"></label>
+                                </p>
+                            </div>
+
+                             <div class="col-md-6 form-group row">    
+                                <p class="label col-sm-3 pl-0 pl-md-3">Diastolic (PM/Nighttime)<span class="offred">*</span>:</p>
+                                <p class="col-sm-9 pl-0 pl-md-3"><input type="text" id="cDiastolic1" class="bdr" size="5" name="cDiastolic1" Enabled="true" style="padding:5px" onblur="diastolicValidation()"placeholder="Please Enter Your Nighttime Reading">
+                                    <label for="error" id= "diastolic_error1"></label>
+                                </p>
+                            </div>
+                            <p class="mt-0">
+                                <input class="btn calculate font-weight-bold px-4 py-2 mt-0 btn-shadow btn-info" id = "cal" value="Calculate" onclick="testCalculation()" type="button" data-toggle="modal" data-target="#exampleModal"/>
+                            </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="column">
+              <div class = "container2">
+                <div class="modal-header">  
+                    <h2 class="modal-title nobar" id="exampleModalLabel">Your Results</h2>
+                </div>
+                <div class="modal-body">
+                    <h3 class="pb-3">BP Analysis</h3>
+                    <div class="pb-3">
+                        <label for="total_points" id="total_points">Your Average Systolic/Diastolic Reading is: </label>
+                    </div> 
+                    <p></p>
+                        <div id="low-risk"></div>
+                        <div id="moderate-risk"></div>
+                        <div id="high-risk"></div> 
+                        <div id="random-values"></div>  
+                        <label for="risk_level" id="risk_level">Your Blood Pressure Risk Level is: </label>
+                        <p></p>
+                        <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="onModalClose()">Reset</button>
+            </div>
+            <script type="text/javascript" src="js/bp2.js"></script>
+            <p></p>
+            <p>Blood pressure is one of our most important vital signs that determines our cardiovascular disease risk and overall health. The heart acts as a pump and is responsible for pressurizing blood, so it can travel and deliver nutrients to all parts of our bodies. Here, we aim to provide information on healthy blood pressure values.</p>
+            <p>Blood Pressure, like heart rate is an important vital sign and must be regularly monitored and maintained. You can check your blood pressure by using automatic cuffs, which can be found at your local pharmacies. Check your blood pressure while sitting down without your legs crossed. For optimal health, teach yourself and others about blood pressure and its important cardiovascular effects.</p>
+    <p>Legal Disclaimer:
+Advice, graphics, images and information contained in this online site is presented for general educational and information purposes and to increase overall safety awareness. </p>
+<p>It is not intended to be legal, medical or other expert advice or services, and should not be used in place of consultation with appropriate professionals. </p>
+<p>The information contained in this site should not be considered exhaustive and the user should seek the advice of appropriate professionals.</p>
+
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+  <div class="container">
+      <div>
+        <div style="text-align: left;">
+          <h2 class="pt-2 pb-3 font-weight-bold">Understanding Blood Pressure Readings & Cardiovasular Health</h2>
+        </div>
+
+<p>High blood pressure can result in damage to the heart and arteries, which in turn, can cause high blood pressure. The heart must work harder to pump the same amount of blood for people with high blood pressure. Surprisingly, the systemic effects can lead to plaque buildup and cause heart disease. Problems like heart attack, stroke and kidney diseases can also occur with chronic hypertension. Hypotension or low blood pressure is less common, but can cause fainting or dizziness.<br></p>
+
+<p>It is very important to regularly check blood pressure. On average, a healthy blood pressure is less than 120/80. The 120 refers to systolic blood pressure or the pressure measured while the heart squeezes and the 80 refers to diastolic blood pressure which is the pressure measured while the heart is relaxing. A blood pressure between 120-129/80 is considered elevated or pre-hypertensive. A high blood pressure or hypertension stage I is 130-139/80-89 and a hypertension stage II is less than 140/90. Lastly, a hypertensive crisis is less than 190/120 and requires a hospital visit. Hypotension or low blood pressure is less than 90/60. Frequently monitoring blood pressure is an essential part of preventing heart disease. <br></p>
+
+<p>Blood pressure is affected by many environmental factors. Among these are diet, exercise and stress. In terms of diet, a high sodium diet can lead to hypertension in the long-term. Processed foods and fast foods contain high amounts of sodium and it is important to use appropriate, but not high sodium amounts. The recommendation for sodium is 2300 mg/day. Endurance exercise, such as jogging and runs can also be great for reducing blood pressure from an early age. Lastly, maintaining stress and using relaxation techniques such as meditation and deep-breathing manage stress and improve blood pressure. Hypotension occurs due to genetics, medications or dehydration. Drinking enough water can help maintain hypotension issues. Quitting smoking and reducing anxiety also helps with blood pressure. These environmental factors should always be accounted for.<br></p>
+
+ </p>
+    <p>Using the table below, determine your blood pressure category, generally you want to use an average of two to three readings to determine your category</p>
+    
+    <table style="width:100%">
+  <tr>
+    <th>Blood Pressure Category</th>
+    <th>Systolic (mm Hg)</th> 
+    <th>Diastolic (mm Hg)</th>
+  </tr>
+  <tr>
+    <td>Normal</td>
+    <td>Less than 120</td>
+    <td>Less than 80</td>
+  </tr>
+  <tr>
+    <td>Elevated</td>
+    <td>120 to 129</td>
+    <td>Less than 80</td>
+  </tr>
+  <tr>
+    <td>Hypertension I</td>
+    <td>130 to 139</td>
+    <td>80 to 89</td>
+  </tr>
+      <tr>
+    <td>Hypertension II</td>
+    <td>140 or Higher </td>
+    <td>90 or Higher </td>
+  </tr>
+       <tr>
+    <td>Hypertensive Crisis (Call Your Doctor ASAP)</td>
+    <td>180 or Higher </td>
+    <td>120 or Higher </td>
+  </tr>
+</table>
+    <p>Use the table in conjunction with your results from the calculator. Record your results each day for a week and discuss them with a trusted healthcare provider to determine the right treatment for you.</p>
+    
+    
+    
+    
+    
+    
+    
+          </div>
+  </div>
+  </div>
+</body>
+<body>
+<div class="picture_div" style="margin:0px auto; text-align:center; size: 40%!important">
+     <img src="images/picture1.png" width="250" height="100"/>
+</div>
+</body>
+<!-- Footer -->
+ <div class="w3-center w3-opacity">
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+ <p>Innovated by Aayush Kapur, Sai Ongole and Swarchaa Kataria.</p>
+</div>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>    
+</html>

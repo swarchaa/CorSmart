@@ -1,0 +1,265 @@
+<html lang="en">
+<title>CorSmart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+  <script src="js/FraminghamCalculator.js"></script>
+<style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Lato", sans-serif
+  }
+
+  .w3-bar,
+  h1,
+  button {
+    font-family: "Montserrat", sans-serif
+  }
+
+  .fa-anchor,
+  .fa-coffee {
+    font-size: 200px
+  }
+</style>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="home.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</a>
+      <a href="blood_pressure.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Blood Pressure</a>
+      <a href="heart_rate.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Heart Rate</a>
+      <a href="framingham.html" class="w3-bar-item w3-button w3-padding-large w3-white">Framingham's Risk Score</a>
+      <a href="heart_healthy.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Heart Healthy Foods</a>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+      <a href="home.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
+      <a href="blood_pressure.html" class="w3-bar-item w3-button w3-padding-large">Blood Pressure</a>
+      <a href="heart_rate.html" class="w3-bar-item w3-button w3-padding-large">Heart Rate</a>
+      <a href="framingham.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Framingham's Risk Score</a>
+      <a href="heart_healthy.html" class="w3-bar-item w3-button w3-padding-large">Heart Healthy Foods</a>
+    </div>
+  </div>
+
+  <head>
+    <title>Framingham Risk Calculator</title>
+    <!---<link rel="stylesheet" type="text/css" href="themes/mine.css" /> ---->
+    <link rel="stylesheet" type="text/css" href="css/Framingham.css" media="screen" />
+
+  </head>
+
+  <body>
+    <div class="column">
+      <script src="js/FraminghamCalculator.js"></script>
+      <div class="container1">
+        <form method="post" action="" id="framingham" runat="server">
+
+          <div>
+            <div style="text-align: left;">
+              <h2 class="pt-2 pb-3 font-weight-bold">Framingham Risk Calculator</h2>
+            </div>
+            <div>
+              <h3>Please Enter Your Details</h3>
+              <div class="row">
+                <div>
+                  <div class="row mx-auto">
+                    <div class="col-md-6 form-group row">
+                      <p class="label col-sm-3 pl-0 pl-md-3">Your Age<span class="offred">*</span>:</p>
+                      <p class="col-sm-9 pl-0 pl-md-3"><input type="text" id="cAge" class="bdr" size="5" name="cAge" Enabled="true" style="padding:2px" onblur="ageValidation()" placeholder="Please Enter Your Age">
+                        <label for="error" id="age_error"></label>
+                      </p>
+                    </div>
+                    <div class="col-md-6 form-group row">
+                      <p class="label col-sm-3 pl-0 pl-md-3"> Choose Your Gender Identity<span class="offred">*</span>:</p>
+                      <p class="col-sm-9 pl-0 pl-md-3">
+                        <input id="cMale" name="1" type="radio" style="padding-right:5px;" /> &nbsp;Male &nbsp;&nbsp;
+                        <input id="cfemale" name="2" type="radio" style="padding-right:5px;" /> &nbsp;Female
+                      </p>
+                    </div>
+
+                    <div class="col-md-6 form-group row">
+                      <p class="label col-sm-3 pl-0 pl-md-3">Your Current Blood Pressure Readings<span class="offred">*</span>:</p>
+                      <p class="col-sm-9 pl-0 pl-md-3"><input id="cSystolic" class="bdr" size="5" name="cSystolic" type="text" runat="server" onblur="bpValidation()" placeholder="Example: 120/80" /> mm&nbspHg
+                        <label for="error" id="bp_error"></label>
+                      </p>
+                    </div>
+                    <div class="col-md-6 form-group row">
+                      <p class="label col-sm-3 pl-0 pl-md-3">Your Current Total Cholesterol Levels<span class="offred">*</span>:</p>
+                      <p class="col-sm-9 pl-0 pl-md-3">
+                        <input type="text" id="cCholesterol" name="cCholesterol" class="bdr" onblur="tlchlValidation()" placeholder="Example: 200" /> mmol/L
+                        <label for="error" id="chl_error"></label>
+                      </p>
+                    </div>
+                    <div class="col-md-6 form-group row">
+                      <p class="label col-sm-3 pl-0 pl-md-3">Your Current HDL Levels<span class="offred">*</span>:</p>
+                      <p class="col-sm-9 pl-0 pl-md-3">
+                        <input id="cHDL" class="bdr" size="5" name="cHDL" type="text" oscarDB="m$HDL#value" onblur="hdlValidation()" placeholder="Example: 60" /> mmol/L
+                        <label for="error" id="hdl_error"></label>
+                      </p>
+                    </div>
+                    <div class="col-md-6 form-group row">
+                      <p class="label col-sm-3 pl-0 pl-md-3">Are You a Smoker<span class="offred">*</span>?</p>
+                      <p class="col-sm-9 pl-0 pl-md-3">
+                        <input id="cNonSmoker" name="smoking" checked="checked" type="radio" />
+                        <label class="cNonSmoker" for="cNonSmoker"> &nbsp;Non or Ex-Smoker</label> &nbsp;&nbsp;
+                        <input id="cCurSmoker" name="smoking" type="radio" />
+                        <label class="cCurSmoker" for="cCurSmoker"> &nbsp;Current Smoker</label>
+                      </p>
+                    </div>
+                    <div class="col-md-6 form-group row">
+                      <p class="label col-sm-3 pl-0 pl-md-3">What is Your BP Control Status<span class="offred">*</span>?</p>
+                      <p class="col-sm-9 pl-0 pl-md-3">
+                        <input id="cUntreated" name="bptreated" checked="checked" type="radio" />
+                        <label class="radio" for="cUntreated"> &nbsp;Untreated BP</label>&nbsp;&nbsp;
+                        <input id="cTreated" name="bptreated" type="radio" />
+                        <label class="radio" for="cTreated"> &nbsp;Treated BP</label>
+                      </p>
+                    </div>
+
+                    <div class="col-md-6 form-group row">
+                      <p class="label col-sm-5 pl-0 pl-md-3"> Are you Diabetic<span class="offred">*</span>?</p>
+                      <p class="col-md-7 pl-0 pl-md-3">
+                        <input id="isDiabetesY" name="isDiabetes" checked="checked" type="radio" />
+                        <label class="isDiabetesY" for="isDiabetesY"> &nbsp;Yes</label>&nbsp;&nbsp;
+                        <input id="isDiabetesN" name="isDiabetes" type="radio" />
+                        <label class="isDiabetesN" for="isDiabetesN"> &nbsp;No</label>
+                      </p>
+                    </div>
+                    <p class="mt-0">
+                      <input class="btn calculate font-weight-bold px-4 py-2 mt-0 btn-shadow btn-info" id="cal" value="Calculate" onclick="testCalculation()" type="button" data-toggle="modal" data-target="#exampleModal" />
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="column">
+      <div class="container2">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title nobar" id="exampleModalLabel">Your Results</h2>
+            </div>
+            <div class="modal-body">
+              <h3 class="pb-3">Framingham Ten-Year Coronary Heart Disease Risk</h3>
+              <div class="pb-3">
+                <label for="total_points" id="total_points">Total Points:</label>
+              </div>
+              <p></p>
+              <div class="pb-3">
+                <label for="result" id="result_value">Risk %:</label>
+              </div>
+              <p></p>
+              <div class="pb-3">
+                <label for="result" id="heart_age">Heart Age in Years:</label>
+              </div>
+              <p></p>
+              <div id="low-risk"></div>
+              <div id="moderate-risk"></div>
+              <div id="high-risk"></div>
+              <label for="risk_level" id="risk_level">Risk Level:</label>
+            </div>
+            <p></p>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="onModalClose()">Reset</button>
+            </div>
+      <script type="text/javascript" src="js/FraminghamCalculator.js"></script>
+      <p></p>
+      <p>The calculator tool will determine your risk percentage, risk category, and "heart age" -- a metric that help you determine your heart health relative to your actual age. Generally, the younger your heart age the better your health.</p> 
+      <p>If your heart age is close to your actual age (+/- 2.5 - 3.0 years) this is considered to be quite healthy. </p>
+      <p>A heart age around 5 years of your actual age can indicate a moderate risk for cardiovascular disease, while a heart age above 5 years of your actual age could indicate an issue and should be discusssed with a healthcare provider. </p>
+      <p>It should be noted that "heart age" is more of a conceptual gauge rather than a standard medical metric.</p>
+     <p>Note: A high or intermediate Framingham Risk Score is NOT a death sentence in today's world provided the individual is willing to commit to an overall healthy lifestyle (encompassing both physical and mental health).
+    <p>As seen in the table below, your risk level in combination with other conditions is a reference point for your healthcare provider to help you develop an appropriate course of action based off of your individual background and needs.</p>
+
+     <p>&nbsp;</p>
+    <p>Legal Disclaimer:
+Advice, graphics, images and information contained in this online site is presented for general educational and information purposes and to increase overall safety awareness. </p>
+<p>It is not intended to be legal, medical or other expert advice or services, and should not be used in place of consultation with appropriate professionals. </p>
+<p>The information contained in this site should not be considered exhaustive and the user should seek the advice of appropriate professionals.</p>
+<p>&nbsp;</p>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+      <div class="container">
+        <div>
+          <div style="text-align: left;">
+            <h2 class="pt-2 pb-3 font-weight-bold">Framingham Risk Score & Cardiovascular Disease Risk</h2>
+          </div>
+          <p>An individual's Framingham Risk Score is used to determine an individual's risk of developing cardiovascular diseases within 10 years. Specifically, your scores predict the likelihood of developing a myocardial infraction (commonly referred to as a heart attack). These scores are useful for predicting coronary diseases in a 10 year time frame as well. </p>
+          <p>Framingham Risk Scores are most useful for adults over the age of 30, this calculator tool is designed to make predictions for any adult over the age of 30. Men above the age of 50 and women above the age of 60 are at a heightened risk for heart attacks. Generally, a patient with an intermediate or high Framingham Risk score will be asked to begin a statin regminet or similar medicinal treatment while improveing lifestyle factors and taking measures to improve overall well-being. </p>
+          <p>The good news is that lowering your Framingham Risk Score is a very attainable goal for most people since genetics play a relatively limited role in the genesis of cardivascular disease when compared to the impact of lifestyle factors. Numerous studies and anecdotal observation have shown that eating a well balanced diet high in vegetables and moderate amounts healthy fats in combination with a physically active lifestlye are vital in sustainabily lowering cardiovascular risk. Increasing evidence leads us to believe that a "Mediterranean Diet" consists of food patterns that are incredibly good for your cardiovasular and general health. Avoiding excess exposure to smoke and limiting or eliminating alcohol intake are instrumental in keeping your risk low.</p>
+          <p>Lifestyle driven ailments such as Type-II Diabetes, Insulin resistance, and high amounts of visceral fat are strongly correlated with increased cardiovascular risk, as an individual improves insulin resistance and looses visceral fat their risk factor for cardiovascular disease and it's drivers decreases significantly. The standard American diet and modern Western lifestyle can make overcoming these ailments and risk factors challenging at times, however with the right advice, dedication, and a growth-driven mindset, several individuals have worked to lower their risk scores significantly.</p>
+          
+
+          <table style="width:100%">
+            <tr>
+              <th>Risk Level</th>
+              <th>General Conditions for Initating Treatment</th>
+            </tr>
+            <tr>
+              <td>High Framingham Risk Score (FRS > 20%) </td>
+              <td>Consider treatment for anyone at this risk level irrespective of lifestyle factors and prexisting conditions </td>
+            </tr>
+            <tr>
+              <td>Intermediate Framingham Risk Score (FRS 10% - 19%)</td>
+              <td>LDL>3.5 mmol/L and/or Smoker,High Waist Circumfrence, Hypertension, Impaired Fasting Glucose, High Cholesterol, Standard American Diet</td>
+            </tr>
+            <tr>
+              <td>Low Framingham Risk Score (FRS < 10%) </td>
+              <td>Statins and other medicinal measures not needed, maintain healthy lifestyle habits</td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </body>
+<div class="picture_div" style="margin:0px auto; text-align:center; size: 40%!important">
+     <img src="images/picture1.png" width="250" height="100"/>
+</div>
+    
+  <!-- Footer -->
+  <footer>
+    <div class="w3-center w3-opacity">
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+      <p>Innovated by Aayush Kapur, Sai Ongole and Swarchaa Kataria.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
+
+</html>

@@ -1,0 +1,189 @@
+<html>
+<html lang="en">
+<title>CorSmart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/index.css" media="screen"/>
+  <script src="js/heart_rate.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="home.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</a>
+    <a href="blood_pressure.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Blood Pressure</a>
+    <a href="heart_rate.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">Heart Rate</a>
+    <a href="framingham.html" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Framingham's Risk Score</a>
+    <a href="heart_healthy.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Heart Healthy Foods</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="home.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <a href="blood_pressure.html" class="w3-bar-item w3-button w3-padding-large">Blood Pressure</a>
+    <a href="heart_rate.html" class="w3-bar-item w3-button w3-padding-large w3-padding-large">Heart Rate</a>
+    <a href="framingham.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large ">Framingham's Risk Score</a>
+    <a href="heart_healthy.html" class="w3-bar-item w3-button w3-padding-large">Heart Healthy Foods</a>
+  </div>
+</div>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,width=device-width">
+
+	<title>Maximum Heart Rate Calculator</title>
+    <link rel="stylesheet" type="text/css" href="css/framingham.css" media="screen"/>
+   <script src="js/heart_rate.js" type="text/JavaScript"></script>
+</head>
+<body>
+    <div class= "column">
+	<div class="container1">
+        <form method="post" action="" id="heartrate" runat="server">
+
+        	<div>
+            <div style="text-align: left;">
+                <h2 class="pt-2 pb-3 font-weight-bold">Target Active Heart Rate Calculator</h2>
+            </div>
+            <div>
+                <h3>Please Enter Your Details</h3>
+                 <div class="row">   
+                    <div>
+                        <div class="row mx-auto">
+                            <div class="col-md-6 form-group row">
+                                <p class="label col-sm-3 pl-0 pl-md-3">Age<span class="offred">*</span>:</p>
+                                <p class="col-sm-9 pl-0 pl-md-3"><input type="text" id="cAge" class="bdr" size="5" name="cAge" Enabled="true" style="padding:5px" onblur="ageValidation()"placeholder="Please Enter Your Age">
+                                    <label for="error" id= "age_error"></label>
+                                </p>
+                            </div>
+
+                            <div class="col-md-6 form-group row">    
+                                <p class="label col-sm-3 pl-0 pl-md-3">Resting Heart Rate<span class="offred">*</span>:</p>
+                                <p class="col-sm-9 pl-0 pl-md-3"><input type="text" id="chrate" class="bdr" size="5" name="chrate" Enabled="true" style="padding:5px" onblur="chrateValidation()"placeholder="Please Enter Your Resting Heart Rate">
+                                    <label for="error" id= "hrate_error"></label>
+                                </p>
+                            </div>
+                            <p class="mt-0">
+                                <input class="btn calculate font-weight-bold px-4 py-2 mt-0 btn-shadow btn-info" id = "cal" value="Calculate" onclick="testCalculation()" type="button" data-toggle="modal" data-target="#exampleModal"/>
+                            </p>
+                        </div>
+                    	</div>
+                	</div>           
+            	</div>
+        	</div>
+    		</form>
+    	</div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="column">
+        <div class = "container2">    
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title nobar" id="exampleModalLabel">Your Results</h2>
+                </div>
+                <div class="modal-body">
+                    <h3 class="pb-3">Heart Rate Analysis</h3>
+                    <div class="pb-3">
+                        <label for="total_points" id="total_points">Maximum heart rate: </label>
+                    </div>
+                    <p></p>
+                    <div>
+                        <label for="total_points2" id="total_points2">Target heart rate zone for vigorous exercise: </label>
+                        <p></p>
+                        <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="onModalClose()">Reset</button>
+            </div>
+            <script type="text/javascript" src="js/heart_rate.js"></script>
+            <p></p>
+    <p>Legal Disclaimer:
+Advice, graphics, images and information contained in this online site is presented for general educational and information purposes and to increase overall safety awareness. </p>
+<p>It is not intended to be legal, medical or other expert advice or services, and should not be used in place of consultation with appropriate professionals. </p>
+<p>The information contained in this site should not be considered exhaustive and the user should seek the advice of appropriate professionals.</p>
+                </div>
+
+                    </div> 
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+  <div class="container">
+      <div>
+        <div style="text-align: left;">
+          <h2 class="pt-2 pb-3 font-weight-bold">Heart Rate & Excercise</h2>
+        <p>Your heart rate is the literal speed of your heartbeat. Heart rate is measured by counting the number of contractions your heart preforms within one minute (hence a measurement of "Beats Per Minute (BPM)") A heart rate above 100 bpm (resting) is considered high, this is often referred to as "Tachycardia" while a heart rate below 60 bpm (resting) is considered to be too low and is often referred to as "Bradycardia"</p>
+        <p>The heart is a muscular organ, and like any muscle it requires excerise and delicate care. Too much immediate strain on the heart can lead to numerous acute problems such as a heart attack, long term strain or inactivity can lead to more chronic illnesses such as heart disease. Apart from physical excersie there are several other influences that impact heart rate, ranging from thyroid hormones to the ingestion of stimulants and depressants succh as caffine and alcohol. </p>
+          </div>
+        
+        <table style="width:100%">
+  <tr>
+    <th>Heart Rate Zone</th>
+    <th>Benefit</th> 
+    <th>Example Activities</th>
+  </tr>
+  <tr>
+    <td>Vigorous (greater than 90% of Maximum Heart Rate) </td>
+    <td>Excellent for atheletic high-intensity training & visceral fat reduction </td>
+    <td>Sprinting, Spin biking, fast pace swim, high-intesity treadmil</td>
+  </tr>
+  <tr>
+    <td>Intense (between 80% to 90% of Maximum Heart Rate)</td>
+    <td>Excellent for interval training & visceral fat reduction</td>
+    <td>Track workouts, medium pace spin biking, medium pace swim</td>
+  </tr>
+  <tr>
+    <td>Moderate (between 70% and 79% of Maximum Heart Rate)</td>
+    <td>Best pace for a steady and sustainable work out of 30 - 40 minutes </td>
+    <td>Jogging, casual swim sprints, average treadmil walk</td>
+  </tr>
+          <tr>
+    <td>Light (between 60% and 69% of Maximum Heart Rate)</td>
+    <td>Perfect "transition" pace to gear up into a higher heart zone or to gear down towards the end of your workout</td>
+    <td>Fast pace walk or walking a dog</td>
+  </tr>
+            <tr>
+    <td>Easy (between 50% and 59% of Maximum Heart Rate)</td>
+    <td>Ideal zone for pr-workout activity should be engaged for 15 - 20 minutes</td>
+    <td>Casual walking, walking and talking, stretching</td>
+  </tr>  
+</table>
+        <p>This calculator tools helps you determine your "Maximum Heart Rate" and should be used in conjuntion with the table to help you get an idea of what kind of workout you should do based off of the general benefits that particular workout has. Think of the benefits in relation to your personal health goals and keep a general check on your heart rate using a smart watch or heart rate counter while working out to get a better idea of how you're doing. Start of at the bottom of the heart rate zones and progressively work your way up, peaking at the vigorous activity zone if you are interested in a high intensity work out, from there taiper back down until you reach the easy zone to cool down</p>
+  </div>
+  </div>
+  </div>
+</body>
+<div class="picture_div" style="margin:0px auto; text-align:center; size: 40%!important">
+     <img src="images/picture1.png" width="250" height="100"/>
+</div>
+<!-- Footer -->
+<footer>
+ <div class="w3-center w3-opacity">
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+ <p>Innovated by Aayush Kapur, Sai Ongole and Swarchaa Kataria.</p>
+</div>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>    
+</html>
